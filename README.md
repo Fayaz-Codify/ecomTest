@@ -63,7 +63,7 @@ php artisan migrate
 
 6. Seed demo products
 ```
-php artisan db:seed
+php artisan db:seed --class=ProductSeeder
 ```
 
 7. Start Laravel server
@@ -158,7 +158,7 @@ php artisan optimize:clear
 
 - Re-run migrations (deletes all data)
 ```
-php artisan migrate:fresh --seed
+php artisan db:seed --class=ProductSeeder
 ```
 
 - Build frontend for production
