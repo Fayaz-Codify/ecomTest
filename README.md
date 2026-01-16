@@ -1,112 +1,175 @@
-project:
-  name: "E-Commerce App (Laravel API + React)"
-  description: "A simple full-stack e-commerce application built with a decoupled architecture."
-  tech_stack:
-    backend: "Laravel (REST API)"
-    frontend: "React + Vite"
-    database: "MySQL"
-    http_client: "Axios"
-  features:
-    - "Product listing"
-    - "Cart management"
-    - "Checkout and order placement"
-    - "Order confirmation"
+# E-Commerce App (Laravel API + React)
 
-project_structure:
-  - ecommerce/
-    - backend: "Laravel API"
-    - frontend: "React (Vite)"
+A simple full-stack e-commerce application built with a decoupled architecture.
 
-backend_setup:
-  steps:
-    - step: "Install PHP dependencies"
-      command: "composer install"
-    - step: "Create environment file"
-      command: "cp .env.example .env"
-    - step: "Update database credentials"
-      env_variables:
-        DB_DATABASE: "ecommerce"
-        DB_USERNAME: "root"
-        DB_PASSWORD: ""
-    - step: "Generate application key"
-      command: "php artisan key:generate"
-    - step: "Run migrations"
-      command: "php artisan migrate"
-    - step: "Seed demo products"
-      command: "php artisan db:seed"
-    - step: "Start Laravel server"
-      command: "php artisan serve"
-      note: "The backend API will run at http://127.0.0.1:8000"
+---
 
-backend_api_routes:
-  - method: "GET"
-    endpoint: "/api/products"
-    description: "Get all products"
-  - method: "POST"
-    endpoint: "/api/orders"
-    description: "Place a new order"
+## Tech Stack
 
-frontend_setup:
-  steps:
-    - step: "Navigate to frontend folder"
-      command: "cd ../frontend"
-    - step: "Install dependencies"
-      command: "npm install"
-    - step: "Start development server"
-      command: "npm run dev"
-      note: "React app will run at http://localhost:5173. Make sure Laravel server is running before starting React."
+- Backend: Laravel (REST API)  
+- Frontend: React + Vite  
+- Database: MySQL  
+- HTTP Client: Axios  
 
-order_flow:
-  - "Products load from /api/products"
-  - "User adds items to cart"
-  - "User enters name and email at checkout"
-  - "Order sent to /api/orders"
-  - "Confirmation displays order ID, total price, and ordered items"
+---
 
-database_tables:
-  products:
-    - column: "id"
-      type: "BigInt (PK)"
-    - column: "name"
-      type: "String"
-    - column: "description"
-      type: "Text"
-    - column: "price"
-      type: "Decimal"
-    - column: "stock"
-      type: "Integer"
+## Features
 
-  orders:
-    - column: "id"
-      type: "BigInt (PK)"
-    - column: "customer_name"
-      type: "String"
-    - column: "customer_email"
-      type: "String"
-    - column: "total"
-      type: "Decimal"
+- Product listing  
+- Cart management  
+- Checkout and order placement  
+- Order confirmation  
 
-  order_items:
-    - column: "id"
-      type: "BigInt (PK)"
-    - column: "order_id"
-      type: "Foreign Key"
-    - column: "product_id"
-      type: "Foreign Key"
-    - column: "quantity"
-      type: "Integer"
-    - column: "price"
-      type: "Decimal"
+---
 
-common_commands:
-  - description: "Clear Laravel cache"
-    command: "php artisan optimize:clear"
-  - description: "Re-run migrations (deletes all data)"
-    command: "php artisan migrate:fresh --seed"
-  - description: "Build frontend for production"
-    command: "npm run build"
+## Project Structure
 
-author:
-  name: "Fayaz Ahmad"
-  degree: "BS Computer Science"
-  role: "Laravel and React Developer"
+```
+ecommerce/
+├── backend/        # Laravel API
+└── frontend/       # React (Vite)
+```
+
+---
+
+## Backend Setup (Laravel)
+
+1. Install PHP dependencies
+```
+composer install
+```
+
+2. Create environment file
+```
+cp .env.example .env
+```
+
+3. Update database credentials in `.env`:
+```
+DB_DATABASE=ecommerce
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+4. Generate application key
+```
+php artisan key:generate
+```
+
+5. Run migrations
+```
+php artisan migrate
+```
+
+6. Seed demo products
+```
+php artisan db:seed
+```
+
+7. Start Laravel server
+```
+php artisan serve
+```
+
+The backend API will run at: `http://127.0.0.1:8000`
+
+---
+
+## Backend API Routes
+
+| Method | Endpoint      | Description       |
+|--------|---------------|-----------------|
+| GET    | /api/products | Get all products |
+| POST   | /api/orders   | Place a new order |
+
+---
+
+## Frontend Setup (React + Vite)
+
+1. Navigate to frontend folder
+```
+cd ../frontend
+```
+
+2. Install dependencies
+```
+npm install
+```
+
+3. Start the development server
+```
+npm run dev
+```
+
+The frontend React app will run at: `http://localhost:5173`  
+Note: Make sure the Laravel server is running before starting the React app.
+
+---
+
+## Order Flow
+
+1. Products are loaded from `/api/products`  
+2. User adds items to the cart  
+3. User enters name and email at checkout  
+4. Order is sent to `/api/orders`  
+5. Order confirmation displays:
+   - Order ID
+   - Total price
+   - Ordered items  
+
+---
+
+## Database Tables
+
+### products
+| Column      | Type        |
+|------------|-------------|
+| id         | BigInt (PK) |
+| name       | String      |
+| description| Text        |
+| price      | Decimal     |
+| stock      | Integer     |
+
+### orders
+| Column         | Type        |
+|---------------|------------|
+| id            | BigInt (PK)|
+| customer_name | String     |
+| customer_email| String     |
+| total         | Decimal    |
+
+### order_items
+| Column     | Type       |
+|-----------|------------|
+| id        | BigInt (PK)|
+| order_id  | Foreign Key|
+| product_id| Foreign Key|
+| quantity  | Integer    |
+| price     | Decimal    |
+
+---
+
+## Common Commands
+
+- Clear Laravel cache
+```
+php artisan optimize:clear
+```
+
+- Re-run migrations (deletes all data)
+```
+php artisan migrate:fresh --seed
+```
+
+- Build frontend for production
+```
+npm run build
+```
+
+---
+
+## Author
+
+Fayaz Ahmad  
+BS Computer Science | Laravel and React Developer
+
